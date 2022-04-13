@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.195.0/containers/javascript-node
 {
   "name": "EmptyFrontendNg",
-  "image": "mozyy/dev-container:1.0.0",
+  "image": "mozyy/empty-dev-container:1.0.4",
   // "build": {
   //   "dockerfile": "Dockerfile",
   //   // Update the VARIANT arg to pick a version of Go: 1, 1.18, 1.17
@@ -41,21 +41,21 @@
   "extensions": [
     "ms-azuretools.vscode-docker",
     "esbenp.prettier-vscode",
-    "eamodio.gitlens",
-    "dbaeumer.vscode-eslint",
-    "angular.ng-template"
-  ],
+    "eamodio.gitlens"
+    // "dbaeumer.vscode-eslint",
+    // "angular.ng-template"
+  ]
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [3000],
 
   // Use 'portsAttributes' to set default properties for specific forwarded ports. More info: https://code.visualstudio.com/docs/remote/devcontainerjson-reference.
-  "portsAttributes": {
-    "4200": {
-      "label": "Hello Remote World",
-      "onAutoForward": "notify"
-    }
-  }
+  // "portsAttributes": {
+  //   "4200": {
+  //     "label": "Hello Remote World",
+  //     "onAutoForward": "notify"
+  //   }
+  // }
 
   // Use 'otherPortsAttributes' to configure any ports that aren't configured using 'portsAttributes'.
   // "otherPortsAttributes": {
