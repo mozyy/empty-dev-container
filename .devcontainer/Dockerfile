@@ -95,6 +95,13 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@$PROTOC_GEN_GO_VERSI
     go install github.com/mozyy/protoc-gen-gorm@$PROTOC_GEN_GORM_VERSION
 # go install github.com/micro/micro/v3/cmd/protoc-gen-micro && \
 # go install github.com/micro/micro/v3/cmd/protoc-gen-openapi
+RUN go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest &&\
+    go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
+
+RUN mkdir ~/.local/include/google/api && \
+    curl -L -o ~/.local/include/google/api/annotations.proto https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/annotations.proto && \
+    curl -L -o ~/.local/include/google/api/http.proto https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/http.proto
+
 
 ENV GOCACHE=/workspaces/cache/go_cache
 ENV GOMODCACHE=/workspaces/cache/go_mod_cache
