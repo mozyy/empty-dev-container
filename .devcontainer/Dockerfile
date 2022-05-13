@@ -95,12 +95,19 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@$PROTOC_GEN_GO_VERSI
     go install github.com/mozyy/protoc-gen-gorm@$PROTOC_GEN_GORM_VERSION
 # go install github.com/micro/micro/v3/cmd/protoc-gen-micro && \
 # go install github.com/micro/micro/v3/cmd/protoc-gen-openapi
+
+# grpc-gateway
 RUN go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest &&\
     go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
-
 RUN mkdir ~/.local/include/google/api && \
     curl -L -o ~/.local/include/google/api/annotations.proto https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/annotations.proto && \
-    curl -L -o ~/.local/include/google/api/http.proto https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/http.proto
+    curl -L -o ~/.local/include/google/api/field_behavior.proto https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/field_behavior.proto && \
+    curl -L -o ~/.local/include/google/api/http.proto https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/http.proto && \
+    curl -L -o ~/.local/include/google/api/httpbody.proto https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/httpbody.proto
+
+# openapi-generator-cli need java
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends default-jre-headless
 
 
 ENV GOCACHE=/workspaces/cache/go_cache
