@@ -98,11 +98,9 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@$PROTOC_GEN_GO_VERSI
 RUN go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest &&\
     go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 
-RUN mkdir ~/.local/include/google/api && \
-    curl -L -o ~/.local/include/google/api/annotations.proto https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/annotations.proto && \
-    curl -L -o ~/.local/include/google/api/http.proto https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/http.proto
-
+RUN go install github.com/bufbuild/buf/cmd/buf@latest
 
 ENV GOCACHE=/workspaces/cache/go_cache
 ENV GOMODCACHE=/workspaces/cache/go_mod_cache
 ENV YARN_CACHE_FOLDER=/workspaces/cache/yarn_cache
+ENV BUF_CACHE_DIR=/workspaces/cache/buf_cache
