@@ -95,10 +95,16 @@ RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@$PROTOC_GEN_GO_VERSI
     go install github.com/mozyy/protoc-gen-gorm@$PROTOC_GEN_GORM_VERSION
 # go install github.com/micro/micro/v3/cmd/protoc-gen-micro && \
 # go install github.com/micro/micro/v3/cmd/protoc-gen-openapi
+
+# grpc-gateway
 RUN go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest &&\
     go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@latest
 
 RUN go install github.com/bufbuild/buf/cmd/buf@latest
+
+# openapi-generator-cli need java
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends default-jre-headless
 
 ENV GOCACHE=/workspaces/cache/go_cache
 ENV GOMODCACHE=/workspaces/cache/go_mod_cache
