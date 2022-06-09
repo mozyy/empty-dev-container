@@ -78,15 +78,6 @@ ARG PROTOC_WEB_ZIP=protoc-gen-grpc-web-${PROTOC_WEB_VERSION}-linux-x86_64
 RUN curl -L -o /usr/local/bin/protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/${PROTOC_WEB_VERSION}/${PROTOC_WEB_ZIP} && \
     chmod +x /usr/local/bin/protoc-gen-grpc-web
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
-
-ARG ANGULAR_CLI_VERSION=latest
-# [Optional] Uncomment this line to install global node packages.
-# RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
-RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g @angular/cli@${ANGULAR_CLI_VERSION}" 2>&1
-
 ARG PROTOC_GEN_GO_VERSION=latest
 ARG PROTOC_GEN_GO_GRPC_VERSION=latest
 ARG PROTOC_GEN_GORM_VERSION=latest
@@ -105,6 +96,15 @@ RUN go install github.com/bufbuild/buf/cmd/buf@latest
 # openapi-generator-cli need java
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends default-jre-headless
+
+# [Optional] Uncomment this section to install additional OS packages.
+# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#     && apt-get -y install --no-install-recommends <your-package-list-here>
+
+ARG ANGULAR_CLI_VERSION=latest
+# [Optional] Uncomment this line to install global node packages.
+# RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g @angular/cli@${ANGULAR_CLI_VERSION}" 2>&1
 
 ENV GOCACHE=/workspaces/cache/go_cache
 ENV GOMODCACHE=/workspaces/cache/go_mod_cache

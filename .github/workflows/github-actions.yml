@@ -28,4 +28,4 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/empty-dev-container:${{ steps.get_version.outputs.VERSION }}
         build-args: |
-          ANGULAR_CLI_VERSION=13.3.2
+          ANGULAR_CLI_VERSION=14.0.1
