@@ -29,3 +29,4 @@ jobs:
         tags: ${{ secrets.DOCKER_USERNAME }}/empty-dev-container:${{ steps.get_version.outputs.VERSION }}
         build-args: |
           ANGULAR_CLI_VERSION=14.0.1
+          PROTOC_GEN_GORM_VERSION=v0.2.0
